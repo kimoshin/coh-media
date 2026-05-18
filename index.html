@@ -208,9 +208,7 @@ footer{background:var(--ink);color:var(--bg);padding:40px var(--lg) 24px;}
   </div>
   <div class="hero-side-col">
     <div class="side-lbl">Latest Stories</div>
-    <div class="side-item"><div class="side-cat">園の考え方</div><div class="side-ttl">「すべての子どもに選択肢を」——中央こども園が大切にしていること</div></div>
-    <div class="side-item"><div class="side-cat">保育の日々</div><div class="side-ttl">春の泥んこ遊びレポート——感触から広がる、0歳児の世界</div></div>
-    <div class="side-item"><div class="side-cat">地域連携</div><div class="side-ttl">杵築高校との連携授業——高校生が「保育」と向き合った1日</div></div>
+    <div id="heroSideList"></div>
   </div>
 </div>
 <div class="grid-wrap">
@@ -322,6 +320,18 @@ function renderList(articles){
   list.innerHTML='';
   if(!filtered.length){document.getElementById('emptyState').style.display='block';return;}
   document.getElementById('emptyState').style.display='none';
+
+  // Hero side list（最新3件）
+  const heroSide = document.getElementById('heroSideList');
+  if(heroSide){
+    const latest = allArticles.slice(0,3);
+    heroSide.innerHTML = latest.map(a=>`
+      <div class="side-item" onclick="showDetail(${JSON.stringify(a).replace(/"/g,'&quot;')})">
+        <div class="side-cat">${a.category||''}</div>
+        <div class="side-ttl">${a.title}</div>
+      </div>`).join('');
+  }
+
   filtered.forEach((a,i)=>{
     const d=document.createElement('div');
     d.className='a-row';
