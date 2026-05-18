@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>C-oh! Media｜中央こども園</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/m-plus-1@5.1.1/index.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/m-plus-1@5.1.1/300.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/m-plus-1@5.1.1/500.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/m-plus-1@5.1.1/700.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/m-plus-1@5.1.1/900.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --f:'M PLUS 1',sans-serif;
+  --red:#cc2200;--ink:#111;--muted:#666;--light:#aaa;
+  --rule:#e0e0e0;--bg:#fff;--bg2:#f4f4f4;
+  --sp:16px;--md:28px;--lg:44px;
+}
+body{font-family:var(--f);background:var(--bg);color:var(--ink);font-size:14px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+button,a{font-family:var(--f);cursor:pointer;text-decoration:none;color:inherit;}
+.masthead{border-bottom:2px solid var(--ink);padding:0 var(--lg);background:var(--bg);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:52px;position:sticky;top:0;z-index:100;}
+.m-left{font-size:10px;letter-spacing:0.12em;color:var(--light);text-transform:uppercase;}
+.m-logo{text-align:center;font-size:22px;font-weight:900;letter-spacing:-0.02em;transition:letter-spacing 0.3s,opacity 0.3s;cursor:pointer;}
+.m-logo:hover{letter-spacing:0.04em;opacity:0.7;}
+.m-logo .r{color:var(--red);}
+.m-right{display:flex;justify-content:flex-end;gap:20px;align-items:center;}
+.m-right a{font-size:11px;letter-spacing:0.1em;color:var(--muted);transition:color 0.2s,letter-spacing 0.2s;}
+.m-right a:hover{color:var(--ink);letter-spacing:0.15em;}
+.m-cta{background:var(--ink);color:var(--bg)!important;padding:6px 14px;font-size:10px;letter-spacing:0.12em;transition:background 0.2s,transform 0.15s!important;}
+.m-cta:hover{background:var(--red)!important;transform:translateY(-1px);}
+.issue-bar{border-bottom:1px solid var(--ink);padding:6px var(--lg);display:flex;justify-content:space-between;font-size:10px;letter-spacing:0.1em;color:var(--light);text-transform:uppercase;background:var(--bg2);}
+.cat-rail{border-bottom:1px solid var(--rule);padding:0 var(--lg);display:flex;overflow-x:auto;scrollbar-width:none;background:var(--bg);position:sticky;top:52px;z-index:90;}
+.cat-rail::-webkit-scrollbar{display:none;}
+.cat-btn{padding:12px 18px;font-size:11px;font-family:var(--f);letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);border:none;border-bottom:2px solid transparent;background:none;white-space:nowrap;transition:color 0.2s,border-color 0.2s,letter-spacing 0.2s;}
+.cat-btn:hover{color:var(--ink);letter-spacing:0.14em;}
+.cat-btn.active{color:var(--ink);font-weight:700;border-bottom-color:var(--red);}
+.hero-zone{padding:var(--lg) var(--lg) var(--md);border-bottom:1px solid var(--rule);display:grid;grid-template-columns:1fr 280px;gap:var(--lg);align-items:start;}
+.hero-kicker{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);margin-bottom:12px;font-weight:500;}
+.hero-ttl{font-size:clamp(22px,3.2vw,36px);font-weight:900;line-height:1.15;letter-spacing:-0.02em;margin-bottom:14px;}
+.hero-lead{font-size:13px;color:var(--muted);line-height:1.85;margin-bottom:14px;}
+.hero-meta{font-size:10px;letter-spacing:0.1em;color:var(--light);text-transform:uppercase;}
+.side-lbl{font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--light);margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--rule);font-weight:700;}
+.side-item{padding:12px 0;border-bottom:1px solid var(--rule);cursor:pointer;transition:opacity 0.2s,transform 0.2s;}
+.side-item:hover{opacity:0.6;transform:translateX(4px);}
+.side-cat{font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--red);margin-bottom:3px;}
+.side-ttl{font-size:12px;line-height:1.55;font-weight:500;}
+.grid-wrap{display:grid;grid-template-columns:1fr 220px;padding:0 var(--lg);}
+.feed{padding:var(--md) var(--md) 60px 0;border-right:1px solid var(--rule);}
+.feed-hdr{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:20px;padding-bottom:12px;border-bottom:2px solid var(--ink);}
+.feed-ttl{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;font-weight:700;}
+.feed-cnt{font-size:10px;color:var(--light);letter-spacing:0.08em;}
+.a-row{display:grid;grid-template-columns:52px 1fr;gap:14px;padding:18px 0;border-bottom:1px solid var(--rule);cursor:pointer;position:relative;transition:padding-left 0.25s,opacity 0.2s;}
+.a-row::after{content:'';position:absolute;left:0;bottom:-1px;width:0;height:2px;background:var(--red);transition:width 0.3s ease;}
+.a-row:hover{padding-left:8px;opacity:0.82;}
+.a-row:hover::after{width:100%;}
+.a-num{font-size:34px;font-weight:900;color:#ebebeb;line-height:1;transition:color 0.2s;}
+.a-row:hover .a-num{color:#d8d8d8;}
+.a-kicker{font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--red);margin-bottom:4px;font-weight:500;}
+.a-ttl{font-size:14px;font-weight:700;line-height:1.5;margin-bottom:5px;}
+.a-lead{font-size:11px;color:var(--muted);line-height:1.65;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.a-meta{font-size:10px;color:var(--light);margin-top:5px;letter-spacing:0.06em;text-transform:uppercase;}
+.sidebar{padding:var(--md) 0 60px var(--md);}
+.sb-block{margin-bottom:28px;}
+.sb-ttl{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--light);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--ink);font-weight:700;}
+.about-box{background:var(--ink);color:var(--bg);padding:18px;}
+.about-box h4{font-size:14px;font-weight:700;margin-bottom:7px;line-height:1.4;}
+.about-box p{font-size:11px;opacity:0.7;line-height:1.75;margin-bottom:12px;}
+.about-box a{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;border-bottom:1px solid #444;padding-bottom:1px;transition:color 0.2s;}
+.about-box a:hover{color:#fff;}
+.cta-box{border:1px solid var(--ink);padding:18px;}
+.cta-box h4{font-size:13px;font-weight:700;line-height:1.35;margin-bottom:7px;}
+.cta-box p{font-size:11px;color:var(--muted);line-height:1.7;margin-bottom:12px;}
+.cta-btn{display:block;background:var(--ink);color:var(--bg);text-align:center;padding:9px;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-family:var(--f);transition:background 0.2s,transform 0.15s;}
+.cta-btn:hover{background:var(--red);transform:translateY(-1px);}
+.tag-list{display:flex;flex-wrap:wrap;gap:5px;}
+.tag-item{font-size:10px;letter-spacing:0.08em;padding:4px 9px;border:1px solid var(--rule);color:var(--muted);background:none;text-transform:uppercase;font-family:var(--f);transition:all 0.2s,transform 0.15s;}
+.tag-item:hover{background:var(--ink);color:var(--bg);border-color:var(--ink);transform:translateY(-1px);}
+.state-msg{padding:40px 0;text-align:center;color:var(--light);font-size:12px;}
+.spinner{width:22px;height:22px;border:2px solid var(--rule);border-top-color:var(--ink);border-radius:50%;animation:spin 0.6s linear infinite;margin:0 auto 10px;}
+@keyframes spin{to{transform:rotate(360deg);}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+.bc-bar{border-bottom:1px solid var(--rule);padding:10px var(--lg);display:flex;gap:8px;align-items:center;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--light);background:var(--bg2);}
+.bc-link{cursor:pointer;transition:color 0.2s;}
+.bc-link:hover{color:var(--ink);}
+.bc-sep{opacity:0.4;}
+.art-outer{display:grid;grid-template-columns:1fr 200px;gap:56px;padding:0 var(--lg);}
+.art-col{padding:var(--lg) 0 80px;}
+.art-kicker{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);margin-bottom:12px;font-weight:500;}
+.art-h1{font-size:clamp(22px,3.5vw,34px);font-weight:900;line-height:1.18;letter-spacing:-0.02em;margin-bottom:16px;}
+.art-dek{font-size:14px;color:var(--muted);line-height:1.85;border-left:3px solid var(--red);padding-left:16px;margin-bottom:24px;}
+.byline{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--light);padding:12px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);margin-bottom:32px;}
+.hero-ph{width:100%;aspect-ratio:16/7;background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:48px;margin-bottom:32px;}
+.hero-photo{width:100%;aspect-ratio:16/7;object-fit:cover;display:block;margin-bottom:32px;}
+.art-body{font-size:15px;line-height:2.1;}
+.art-body p{margin-bottom:1.7em;}
+.art-body h2{font-size:18px;font-weight:700;margin:2.5em 0 0.8em;padding-bottom:10px;border-bottom:1px solid var(--ink);}
+.art-body h3{font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--red);margin:2em 0 0.6em;}
+.art-body blockquote{background:var(--bg2);border-left:3px solid var(--ink);padding:18px 22px;margin:2em 0;font-size:15px;line-height:1.9;}
+.art-body ul,.art-body ol{margin:0 0 1.7em 1.4em;}
+.art-body li{margin-bottom:0.4em;}
+.art-body img{max-width:100%;display:block;margin:1.5em 0;}
+.art-body figure{margin:2em 0;}
+.art-body figcaption{font-size:11px;color:var(--light);margin-top:6px;text-align:center;}
+.art-footer{margin-top:40px;padding-top:18px;border-top:2px solid var(--ink);}
+.ft-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:18px;}
+.shr-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.shr-lbl{font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--light);}
+.shr-btn{font-size:10px;letter-spacing:0.08em;text-transform:uppercase;padding:6px 14px;border:1px solid var(--rule);color:var(--muted);background:none;font-family:var(--f);transition:all 0.2s,transform 0.15s;}
+.shr-btn:hover{background:var(--ink);color:var(--bg);border-color:var(--ink);transform:translateY(-1px);}
+.det-sidebar{padding:var(--lg) 0 80px;}
+.ds-ttl{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--light);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--ink);font-weight:700;}
+.rel-row{padding:11px 0;border-bottom:1px solid var(--rule);cursor:pointer;transition:opacity 0.2s,transform 0.2s;}
+.rel-row:hover{opacity:0.6;transform:translateX(4px);}
+.rel-cat{font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--red);margin-bottom:2px;}
+.rel-ttl{font-size:12px;line-height:1.55;font-weight:500;}
+.back-btn{font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:9px 18px;border:1px solid var(--ink);background:none;display:inline-flex;align-items:center;gap:6px;margin-top:32px;font-family:var(--f);transition:all 0.2s,transform 0.15s;}
+.back-btn:hover{background:var(--ink);color:var(--bg);transform:translateY(-1px);}
+footer{background:var(--ink);color:var(--bg);padding:40px var(--lg) 24px;}
+.ft-top{display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px;margin-bottom:32px;}
+.ft-logo{font-size:20px;font-weight:900;margin-bottom:6px;letter-spacing:-0.01em;}
+.ft-logo .r{color:var(--red);}
+.ft-tagline{font-size:11px;opacity:0.5;line-height:1.7;}
+.ft-col-ttl{font-size:10px;letter-spacing:0.15em;text-transform:uppercase;opacity:0.4;margin-bottom:12px;font-weight:700;}
+.ft-col a{display:block;font-size:12px;opacity:0.6;margin-bottom:8px;transition:opacity 0.2s,transform 0.15s;}
+.ft-col a:hover{opacity:1;transform:translateX(3px);}
+.ft-btm{border-top:1px solid rgba(255,255,255,0.12);padding-top:14px;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;opacity:0.3;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+@media(max-width:900px){
+  :root{--lg:24px;--md:20px;}
+  .m-left{display:none;}
+  .masthead{grid-template-columns:auto 1fr;}
+  .hero-zone{grid-template-columns:1fr;}
+  .hero-side-col{border-top:1px solid var(--rule);padding-top:var(--md);}
+  .grid-wrap{grid-template-columns:1fr 180px;}
+  .feed{padding-right:20px;}
+  .sidebar{padding-left:20px;}
+  .art-outer{grid-template-columns:1fr 160px;gap:32px;}
+  .ft-top{grid-template-columns:1fr 1fr;gap:24px;}
+}
+@media(max-width:600px){
+  :root{--lg:16px;--md:16px;}
+  .masthead{grid-template-columns:1fr;height:auto;padding:12px var(--lg);justify-items:center;}
+  .m-left,.m-right{display:none;}
+  .issue-bar{flex-direction:column;gap:2px;text-align:center;}
+  .hero-zone{grid-template-columns:1fr;}
+  .hero-side-col{display:none;}
+  .grid-wrap{grid-template-columns:1fr;}
+  .feed{padding-right:0;border-right:none;}
+  .sidebar{display:none;}
+  .a-row{grid-template-columns:40px 1fr;gap:10px;}
+  .a-num{font-size:26px;}
+  .art-outer{grid-template-columns:1fr;}
+  .det-sidebar{display:none;}
+  .art-col{padding:var(--md) 0 60px;}
+  .bc-bar{flex-wrap:wrap;}
+  .ft-top{grid-template-columns:1fr;gap:20px;}
+  footer{padding:28px var(--lg) 16px;}
+  .ft-btm{flex-direction:column;gap:4px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ⚠️ WORKER_URLをCloudflare WorkerのURLに差し替えてください -->
+<script>const WORKER_URL='__WORKER_URL__';</script>
+
+<div id="listPage">
+<header>
+  <div class="masthead">
+    <div class="m-left">中央こども園 公式メディア</div>
+    <div class="m-logo" onclick="showList()">C<span class="r">-</span>oh<span class="r">!</span> Media</div>
+    <nav class="m-right">
+      <a href="#">保育について</a>
+      <a href="#">採用情報</a>
+      <a href="#" class="m-cta">入園相談</a>
+    </nav>
+  </div>
+  <div class="issue-bar">
+    <span>Vol.1 — 2026年 初夏号</span>
+    <span>社会福祉法人 中央福祉会 中央こども園 ／ 大分県杵築市</span>
+  </div>
+  <div class="cat-rail">
+    <button class="cat-btn active" onclick="filterCat(this,'all')">All</button>
+    <button class="cat-btn" onclick="filterCat(this,'保育の日々')">保育の日々</button>
+    <button class="cat-btn" onclick="filterCat(this,'子どもの育ち')">子どもの育ち</button>
+    <button class="cat-btn" onclick="filterCat(this,'園の考え方')">園の考え方</button>
+    <button class="cat-btn" onclick="filterCat(this,'採用・スタッフ')">採用・スタッフ</button>
+    <button class="cat-btn" onclick="filterCat(this,'地域連携')">地域連携</button>
+  </div>
+</header>
+<div class="hero-zone">
+  <div>
+    <div class="hero-kicker">Editor's Pick — 採用・スタッフ</div>
+    <h2 class="hero-ttl">保育士として働く、ということ。</h2>
+    <p class="hero-lead">「子どもが好き」だけでは続かない、という人もいる。でも中央こども園で3年間働いてきた田中先生は「やっぱりこの仕事でよかった」と言う。</p>
+    <div class="hero-meta">2026.04.28 — C-oh! Media 編集部</div>
+  </div>
+  <div class="hero-side-col">
+    <div class="side-lbl">Latest Stories</div>
+    <div class="side-item"><div class="side-cat">園の考え方</div><div class="side-ttl">「すべての子どもに選択肢を」——中央こども園が大切にしていること</div></div>
+    <div class="side-item"><div class="side-cat">保育の日々</div><div class="side-ttl">春の泥んこ遊びレポート——感触から広がる、0歳児の世界</div></div>
+    <div class="side-item"><div class="side-cat">地域連携</div><div class="side-ttl">杵築高校との連携授業——高校生が「保育」と向き合った1日</div></div>
+  </div>
+</div>
+<div class="grid-wrap">
+  <main class="feed">
+    <div class="feed-hdr">
+      <span class="feed-ttl" id="feedTitle">All Stories</span>
+      <span class="feed-cnt" id="feedCount"></span>
+    </div>
+    <div id="loadingState" class="state-msg"><div class="spinner"></div>記事を読み込み中...</div>
+    <div id="emptyState" class="state-msg" style="display:none;">記事が見つかりませんでした。</div>
+    <div id="articleList"></div>
+  </main>
+  <aside class="sidebar">
+    <div class="sb-block"><div class="sb-ttl">About</div>
+      <div class="about-box"><h4>子どもの育ちを、もっと近くで。</h4><p>中央こども園の公式オウンドメディア。保育の現場・先生の声・地域連携など、園のリアルをお届けします。</p><a href="#">公式サイトへ →</a></div>
+    </div>
+    <div class="sb-block"><div class="sb-ttl">入園のご相談</div>
+      <div class="cta-box"><h4>見学・個別相談を随時受付中</h4><p>杵築市外からのご家庭も歓迎しています。</p><a href="#" class="cta-btn">見学を申し込む</a></div>
+    </div>
+    <div class="sb-block"><div class="sb-ttl">Topics</div>
+      <div class="tag-list">
+        <button class="tag-item">#保育理念</button>
+        <button class="tag-item">#先生インタビュー</button>
+        <button class="tag-item">#乳幼児教育</button>
+        <button class="tag-item">#採用</button>
+        <button class="tag-item">#杵築市</button>
+        <button class="tag-item">#遊びと学び</button>
+      </div>
+    </div>
+  </aside>
+</div>
+</div>
+
+<div id="detailPage" style="display:none;">
+  <header>
+    <div class="masthead">
+      <div class="m-left">中央こども園 公式メディア</div>
+      <div class="m-logo" onclick="showList()">C<span class="r">-</span>oh<span class="r">!</span> Media</div>
+      <nav class="m-right"><a href="#" onclick="showList();return false;" class="m-cta">記事一覧</a></nav>
+    </div>
+  </header>
+  <div class="bc-bar">
+    <span class="bc-link" onclick="showList()">C-oh! Media</span>
+    <span class="bc-sep">—</span>
+    <span id="bcCat"></span>
+    <span class="bc-sep">—</span>
+    <span id="bcTitle" style="opacity:0.6;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:300px;"></span>
+  </div>
+  <div class="art-outer">
+    <div class="art-col">
+      <div class="art-kicker" id="dCat"></div>
+      <h1 class="art-h1" id="dTitle"></h1>
+      <p class="art-dek" id="dLead"></p>
+      <div class="byline" id="dByline"></div>
+      <div id="dThumb"></div>
+      <div id="dLoading" class="state-msg"><div class="spinner"></div>読み込み中...</div>
+      <div class="art-body" id="dBody" style="display:none;"></div>
+      <div class="art-footer" id="dFooter" style="display:none;">
+        <div class="ft-tags" id="dTags"></div>
+        <div class="shr-row">
+          <span class="shr-lbl">Share</span>
+          <button class="shr-btn" onclick="shareX()">X / Twitter</button>
+          <button class="shr-btn">Facebook</button>
+          <button class="shr-btn">LINE</button>
+        </div>
+      </div>
+      <button class="back-btn" onclick="showList()">← 記事一覧へ</button>
+    </div>
+    <div class="det-sidebar">
+      <div style="margin-bottom:28px;"><div class="ds-ttl">Related</div><div id="relatedList"></div></div>
+      <div><div class="ds-ttl">入園のご相談</div><div class="cta-box"><h4>見学・個別相談を随時受付中</h4><p>まずはお気軽にご連絡ください。</p><a href="#" class="cta-btn">見学を申し込む</a></div></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="ft-top">
+    <div><div class="ft-logo">C<span class="r">-</span>oh<span class="r">!</span> Media</div><p class="ft-tagline">子どもの育ちを、もっと近くで。<br>中央こども園 公式オウンドメディア</p></div>
+    <div class="ft-col"><div class="ft-col-ttl">Contents</div><a href="#">保育の日々</a><a href="#">子どもの育ち</a><a href="#">園の考え方</a><a href="#">採用・スタッフ</a></div>
+    <div class="ft-col"><div class="ft-col-ttl">Garden</div><a href="#">中央こども園について</a><a href="#">入園のご案内</a><a href="#">採用情報</a><a href="#">お問い合わせ</a></div>
+  </div>
+  <div class="ft-btm"><span>© 2026 社会福祉法人 中央福祉会 中央こども園</span><span>Kitsuki, Oita, Japan</span></div>
+</footer>
+
+<script>
+let allArticles=[],currentCat='all',currentArticle=null;
+
+async function fetchArticles(){
+  const res=await fetch(`${WORKER_URL}/articles`);
+  return res.json();
+}
+async function fetchBlocks(id){
+  const res=await fetch(`${WORKER_URL}/article/${id}`);
+  const data=await res.json();
+  return data.html||'<p>本文を読み込めませんでした。</p>';
+}
+
+function renderList(articles){
+  const filtered=currentCat==='all'?articles:articles.filter(a=>a.category===currentCat);
+  document.getElementById('feedTitle').textContent=currentCat==='all'?'All Stories':currentCat;
+  document.getElementById('feedCount').textContent=`${filtered.length} articles`;
+  const list=document.getElementById('articleList');
+  list.innerHTML='';
+  if(!filtered.length){document.getElementById('emptyState').style.display='block';return;}
+  document.getElementById('emptyState').style.display='none';
+  filtered.forEach((a,i)=>{
+    const d=document.createElement('div');
+    d.className='a-row';
+    d.style.cssText=`opacity:0;animation:fadeUp 0.4s ${i*0.07}s ease forwards;`;
+    d.innerHTML=`<div class="a-num">${String(i+1).padStart(2,'0')}</div>
+    <div><div class="a-kicker">${a.category||'未分類'}</div>
+    <div class="a-ttl">${a.title}</div>
+    ${a.lead?`<div class="a-lead">${a.lead}</div>`:''}
+    <div class="a-meta">${fmtDate(a.date)}${a.author?' — '+a.author:''}</div></div>`;
+    d.onclick=()=>showDetail(a);
+    list.appendChild(d);
+  });
+}
+
+async function showDetail(article){
+  currentArticle=article;
+  document.getElementById('listPage').style.display='none';
+  document.getElementById('detailPage').style.display='block';
+  window.scrollTo(0,0);
+  document.getElementById('bcCat').textContent=article.category||'';
+  document.getElementById('bcTitle').textContent=article.title;
+  document.getElementById('dCat').textContent=article.category||'';
+  document.getElementById('dTitle').textContent=article.title;
+  document.getElementById('dLead').textContent=article.lead||'';
+  document.getElementById('dByline').textContent=`${fmtDate(article.date)}${article.author?'　—　'+article.author:''}`;
+  document.getElementById('dThumb').innerHTML=article.thumbnail
+    ?`<img class="hero-photo" src="${article.thumbnail}" alt="${article.title}">`
+    :`<div class="hero-ph">🌿</div>`;
+  document.getElementById('dLoading').style.display='block';
+  document.getElementById('dBody').style.display='none';
+  document.getElementById('dFooter').style.display='none';
+  const html=await fetchBlocks(article.id);
+  document.getElementById('dLoading').style.display='none';
+  document.getElementById('dBody').innerHTML=html;
+  document.getElementById('dBody').style.display='block';
+  document.getElementById('dTags').innerHTML=(article.tags||[]).map(t=>`<button class="tag-item">#${t}</button>`).join('');
+  document.getElementById('dFooter').style.display='block';
+  const rel=allArticles.filter(a=>a.id!==article.id&&a.category===article.category).slice(0,3);
+  document.getElementById('relatedList').innerHTML=rel.length
+    ?rel.map(a=>`<div class="rel-row" onclick='showDetail(${JSON.stringify(a).replace(/'/g,"\\'")})'><div class="rel-cat">${a.category}</div><div class="rel-ttl">${a.title}</div></div>`).join('')
+    :'<p style="font-size:11px;color:var(--light);">関連記事はありません。</p>';
+}
+
+function showList(){
+  document.getElementById('detailPage').style.display='none';
+  document.getElementById('listPage').style.display='block';
+  window.scrollTo(0,0);
+}
+function filterCat(el,cat){
+  document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');currentCat=cat;renderList(allArticles);
+}
+function fmtDate(d){
+  if(!d)return'';const dt=new Date(d);
+  return`${dt.getFullYear()}.${String(dt.getMonth()+1).padStart(2,'0')}.${String(dt.getDate()).padStart(2,'0')}`;
+}
+function shareX(){
+  const t=currentArticle?.title||'C-oh! Media';
+  window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(t+' | C-oh! Media')}`,'_blank');
+}
+
+(async()=>{
+  try{
+    allArticles=await fetchArticles();
+    document.getElementById('loadingState').style.display='none';
+    renderList(allArticles);
+  }catch(e){
+    document.getElementById('loadingState').innerHTML=`<p style="color:var(--red);">取得に失敗しました。<br><small>${e.message}</small></p>`;
+  }
+})();
+</script>
+</body>
+</html>
